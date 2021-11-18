@@ -1,0 +1,14 @@
+{
+  "name": "quotes",
+  "version": "1.0.0",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc -build"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  }
+}
