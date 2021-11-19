@@ -1,4 +1,4 @@
-import '../styles/global.css';
+import 'tailwindcss/tailwind.css';
 import { useState } from 'react';
 import { QueryClientProvider, QueryClient, Hydrate } from 'react-query';
 import Head from 'next/head';
