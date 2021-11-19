@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+
+const withPlugins = require('next-compose-plugins')
+const withTM = require('next-transpile-modules')(['quotes'])
+
+module.exports = withPlugins([withTM], {
   reactStrictMode: true,
-}
+});
