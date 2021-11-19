@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&amp;display=swap"
           rel="stylesheet"
         ></link>
       </Head>

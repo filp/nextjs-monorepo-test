@@ -28,9 +28,7 @@ const SingleQuote = () => {
   const router = useRouter();
   const { id } = router.query as SingleQuotePageParams;
 
-  const { data: quote, error } = useQuery(`quote/${id}`, async () =>
-    getQuote({ id })
-  );
+  const { data: quote } = useQuery(`quote/${id}`, async () => getQuote({ id }));
 
   return (
     <>
