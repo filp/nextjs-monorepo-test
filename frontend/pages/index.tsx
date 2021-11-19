@@ -22,7 +22,7 @@ const Home = () => {
           className="text-blue-400 hover:text-blue-600 cursor-pointer"
           onClick={() => getSingleRandomQuote()}
         >
-          Let's see another one
+          Let{"'"}s see another one
         </a>
       </div>
     </div>
