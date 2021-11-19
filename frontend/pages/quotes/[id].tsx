@@ -3,6 +3,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { getQuote } from 'quotes';
 import { Quote } from '../../components/Quote';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 
 type SingleQuotePageParams = {
   id: string;
@@ -27,9 +28,24 @@ const SingleQuote = () => {
   const router = useRouter();
   const { id } = router.query as SingleQuotePageParams;
 
-  const { data: quote } = useQuery(`quote/${id}`, async () => getQuote({ id }));
+  const { data: quote, error } = useQuery(`quote/${id}`, async () =>
+    getQuote({ id })
+  );
 
-  return quote && <Quote quote={quote} />;
+  return (
+    <>
+      <div className="mb-2">
+        <Link href="/">
+          <a className="text-blue-400 hover:text-blue-600 text-sm">
+            Return to random quotes
+          </a>
+        </Link>
+      </div>
+      <div className="border border-gray-200 ring-4 ring-white p-4 rounded-2xl shadow-lg">
+        {quote && <Quote quote={quote} />}
+      </div>
+    </>
+  );
 };
 
 export default SingleQuote;
