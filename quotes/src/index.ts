@@ -1,6 +1,6 @@
 const apiBase = 'https://api.quotable.io';
 
-type Quote = {
+export type Quote = {
   _id: string;
   tags: string[];
   content: string;
@@ -14,5 +14,10 @@ type Quote = {
 export const getRandomQuote = async (): Promise<Quote> => {
   const response = await fetch(`${apiBase}/random`);
 
+  return response.json();
+};
+
+export const getQuote = async ({ id }: { id: string }): Promise<Quote> => {
+  const response = await fetch(`${apiBase}/quotes/${id}`);
   return response.json();
 };
