@@ -1,6 +1,5 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import type { InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import { getRandomQuote } from 'quotes';
 
 export const getServerSideProps = async () => {
@@ -15,7 +14,7 @@ const Home = ({
   quote,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <div className={styles.container}>
+    <div className="p-4">
       <Head>
         <title>Quotly</title>
         <meta
@@ -25,17 +24,16 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div>
-          <h1 className={styles.title}>{quote.content}</h1>
-          <p className={styles.author}>{quote.author}</p>
+      <main className="flex flex-col items-center justify-center h-screen">
+        <div className="text-center p-4 max-w-prose">
+          <h1 className="text-2xl font-bold">{quote.content}</h1>
+          <p className="text-gray-500 mt-4 italic">— {quote.author}</p>
         </div>
       </main>
-
-      <footer className={styles.footer}>
+      <footer className="text-center p-2 border-t">
         Quotes from{' '}
         <a
-          className={styles.attribution}
+          className="text-blue-400 font-semibold hover:text-blue-600"
           href="https://github.com/lukePeavey/quotable"
         >
           quotable.io
