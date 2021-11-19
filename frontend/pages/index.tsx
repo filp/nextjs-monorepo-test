@@ -32,7 +32,7 @@ const Home = ({
           </div>
         </main>
 
-        <footer className="text-center p-2 border-t">
+        <footer className="text-center p-2 text-sm text-gray-500">
           Quotes from{' '}
           <a
             className="text-blue-400 font-semibold hover:text-blue-600"
