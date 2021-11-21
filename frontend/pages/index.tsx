@@ -1,6 +1,10 @@
 import { getRandomQuote } from 'quotes';
 import { useEffect, useState } from 'react';
+import { AiOutlineReload } from 'react-icons/ai';
+
 import { Quote } from '../components/Quote';
+import { Button } from '../components/Button';
+
 import type { Quote as QuoteType } from 'quotes';
 
 const Home = () => {
@@ -18,12 +22,9 @@ const Home = () => {
     <div>
       <Quote quote={quote!} />
       <div className="p-4 text-center">
-        <a
-          className="text-blue-400 hover:text-blue-600 cursor-pointer"
-          onClick={() => getSingleRandomQuote()}
-        >
-          Let{"'"}s see another one
-        </a>
+        <Button onClick={() => getSingleRandomQuote()}>
+          <AiOutlineReload /> Let{"'"}s see another one
+        </Button>
       </div>
     </div>
   ) : (

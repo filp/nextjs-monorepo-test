@@ -39,9 +39,7 @@ const SingleQuote = () => {
           </a>
         </Link>
       </div>
-      <div className="border border-gray-200 ring-4 ring-white p-4 rounded-2xl shadow-lg">
-        {quote && <Quote quote={quote} />}
-      </div>
+      {quote && <Quote quote={quote} />}
     </>
   );
 };
