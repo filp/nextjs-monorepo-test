@@ -1,9 +1,11 @@
-import type { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { getQuote } from 'quotes';
+import { useRouter } from 'next/router';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Quote } from '../../components/Quote';
-import { useRouter } from 'next/dist/client/router';
-import Link from 'next/link';
+
+import type { GetServerSidePropsContext } from 'next';
 
 type SingleQuotePageParams = {
   id: string;
@@ -35,7 +37,7 @@ const SingleQuote = () => {
       <div className="mb-2">
         <Link href="/">
           <a className="text-blue-400 hover:text-blue-600 text-sm">
-            Return to random quotes
+            <AiOutlineArrowLeft /> Return to random quotes
           </a>
         </Link>
       </div>

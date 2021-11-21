@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AiOutlineLink } from 'react-icons/ai';
 import type { Quote as QuoteType } from 'quotes';
 
 type Props = {
@@ -7,9 +8,11 @@ type Props = {
 
 export const Quote = ({ quote }: Props) => {
   return (
-    <div className="text-center p-8 md:min-w-full md:max-w-prose rounded-2xl border border-gray-300 shadow-lg my-4 mx-4 md:mx-0">
+    <div className="text-center p-8 max-w-prose rounded-2xl border border-gray-300 shadow-lg my-4 mx-4 md:mx-0">
       <Link href={`/quotes/${quote._id}`}>
-        <a className="text-xs text-blue-400 hover:text-blue-600">Permalink</a>
+        <a className="text-xs text-blue-400 hover:text-blue-600">
+          <AiOutlineLink /> Permalink
+        </a>
       </Link>
 
       <h1 className="text-xl md:text-2xl font-bold">{quote.content}</h1>
