@@ -19,14 +19,14 @@ const Home = () => {
   }, []);
 
   return quote ? (
-    <div>
+    <>
       <Quote quote={quote!} />
       <div className="p-4 text-center">
         <Button onClick={() => getSingleRandomQuote()}>
           <AiOutlineReload /> Let{"'"}s see another one
         </Button>
       </div>
-    </div>
+    </>
   ) : (
     <div className="text-gray-200">Loading a great quote...</div>
   );

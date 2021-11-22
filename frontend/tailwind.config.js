@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        serif: ['Playfair Display', 'ui-serif', 'serif'],
         sans: ['Rubik', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },

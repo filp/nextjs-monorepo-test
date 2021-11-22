@@ -24,17 +24,18 @@ export const Quote = ({ quote }: Props) => {
   return (
     <div className="my-4 mx-4 md:mx-0">
       <div className="text-center p-8 max-w-prose rounded-2xl border border-gray-300 shadow-lg">
-        <Link href={`/quotes/${quote._id}`}>
-          <a className="text-xs text-blue-400 hover:text-blue-600">
-            <AiOutlineLink /> Permalink
-          </a>
-        </Link>
-
-        <h1 className="text-xl md:text-2xl font-bold">{quote.content}</h1>
+        <h1 className="text-xl md:text-3xl font-bold font-serif my-2">
+          {quote.content}
+        </h1>
         <p className="text-gray-500 mt-4">— {quote.author}</p>
       </div>
 
       <div className="text-sm text-right text-gray-400 mt-4 px-4">
+        <Link href={`/quotes/${quote._id}`}>
+          <a className="hover:text-blue-400 mr-4">
+            <AiOutlineLink /> Permalink
+          </a>
+        </Link>
         <a
           className="cursor-pointer select-none hover:text-blue-400"
           onClick={onCopyToClipboard}
