@@ -1,6 +1,6 @@
 import { getRandomQuote } from 'quotes';
 import { useEffect, useState } from 'react';
-import { AiOutlineReload } from 'react-icons/ai';
+import { AiOutlineLoading3Quarters, AiOutlineReload } from 'react-icons/ai';
 
 import { Quote } from '../components/Quote';
 import { Button } from '../components/Button';
@@ -28,7 +28,12 @@ const Home = () => {
       </div>
     </>
   ) : (
-    <div className="text-gray-200">Loading a great quote...</div>
+    <div className="text-blue-500 animate-pulse">
+      <span className="animate-spin inline-block mr-2">
+        <AiOutlineLoading3Quarters />
+      </span>
+      Loading a great quote..
+    </div>
   );
 };
 

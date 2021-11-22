@@ -11,13 +11,18 @@ type SingleQuotePageParams = {
   id: string;
 };
 
+const getQuoteAsync =
+  (...params: Parameters<typeof getQuote>) =>
+  async () =>
+    getQuote.apply(null, params);
+
 export const getServerSideProps = async (
   context: GetServerSidePropsContext<SingleQuotePageParams>
 ) => {
   const queryClient = new QueryClient();
   const { id } = context.params!;
 
-  queryClient.setQueryData(`quote/${id}`, await getQuote({ id }));
+  queryClient.prefetchQuery(`quote/${id}`, getQuoteAsync({ id }));
 
   return {
     props: {
@@ -30,7 +35,7 @@ const SingleQuote = () => {
   const router = useRouter();
   const { id } = router.query as SingleQuotePageParams;
 
-  const { data: quote } = useQuery(`quote/${id}`, async () => getQuote({ id }));
+  const { data: quote } = useQuery(`quote/${id}`, getQuoteAsync({ id }));
 
   return (
     <>
