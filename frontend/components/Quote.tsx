@@ -9,6 +9,14 @@ type Props = {
   quote: QuoteType;
 };
 
+const QuoteAction = ({ children }: React.PropsWithChildren<{}>) => {
+  return (
+    <span className="cursor-pointer select-none hover:text-blue-400 mr-2 last:mr-0">
+      {children}
+    </span>
+  );
+};
+
 export const Quote = ({ quote }: Props) => {
   const { showToast } = useToaster();
 
@@ -31,17 +39,19 @@ export const Quote = ({ quote }: Props) => {
       </div>
 
       <div className="text-sm text-right text-gray-400 mt-4 px-4">
-        <Link href={`/quotes/${quote._id}`}>
-          <a className="hover:text-blue-400 mr-4">
-            <AiOutlineLink /> Permalink
+        <QuoteAction>
+          <Link href={`/quotes/${quote._id}`}>
+            <a>
+              <AiOutlineLink /> Permalink
+            </a>
+          </Link>
+        </QuoteAction>
+
+        <QuoteAction>
+          <a onClick={onCopyToClipboard}>
+            <AiOutlineSnippets /> Copy to clipboard
           </a>
-        </Link>
-        <a
-          className="cursor-pointer select-none hover:text-blue-400"
-          onClick={onCopyToClipboard}
-        >
-          <AiOutlineSnippets /> Copy to clipboard
-        </a>
+        </QuoteAction>
       </div>
     </div>
   );
