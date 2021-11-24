@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
+import { toBlob } from 'html-to-image';
 import { AiOutlineLink, AiOutlineSnippets } from 'react-icons/ai';
 import type { Quote as QuoteType } from 'quotes';
 import copy from 'copy-to-clipboard';
@@ -18,15 +19,37 @@ const QuoteAction = ({ children }: React.PropsWithChildren<{}>) => {
 };
 
 export const Quote = ({ quote }: Props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const { showToast } = useToaster();
 
-  const onCopyToClipboard = (event: React.MouseEvent) => {
+  const onCopyText = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
 
     copy(`${quote.content}\n- ${quote.author}`);
 
     showToast({ text: 'Copied this quote to your clipboard!' });
+  };
+
+  const onCopyImage = (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const createImageBlob = async () => {
+      const blob = await toBlob(containerRef.current!);
+
+      if (blob) {
+        navigator.clipboard.write([
+          new ClipboardItem({
+            [blob.type]: blob,
+          } as unknown as Record<string, ClipboardItemData>),
+        ]);
+
+        showToast({ text: 'Image copied to clipboard' });
+      }
+    };
+
+    createImageBlob();
   };
 
   return (
@@ -36,6 +59,17 @@ export const Quote = ({ quote }: Props) => {
           {quote.content}
         </h1>
         <p className="text-gray-500 mt-4">— {quote.author}</p>
+      </div>
+
+      <div className="absolute -top-full">
+        <div
+          style={{ width: 512, height: 512 }}
+          className="p-8 bg-yellow-200 text-center flex flex-col items-center justify-center border-4 border-yellow-400"
+          ref={containerRef}
+        >
+          <h1 className="text-3xl max-w-prose mb-8">{quote.content}</h1>
+          <span className="text-red-900 text-sm">- {quote.author}</span>
+        </div>
       </div>
 
       <div className="text-sm text-right text-gray-400 mt-4 px-4">
@@ -48,8 +82,14 @@ export const Quote = ({ quote }: Props) => {
         </QuoteAction>
 
         <QuoteAction>
-          <a onClick={onCopyToClipboard}>
-            <AiOutlineSnippets /> Copy to clipboard
+          <a onClick={onCopyText}>
+            <AiOutlineSnippets /> Copy quote
+          </a>
+        </QuoteAction>
+
+        <QuoteAction>
+          <a onClick={onCopyImage}>
+            <AiOutlineSnippets /> Copy image
           </a>
         </QuoteAction>
       </div>
