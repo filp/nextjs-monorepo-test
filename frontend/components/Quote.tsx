@@ -64,11 +64,13 @@ export const Quote = ({ quote }: Props) => {
       <div className="absolute -top-full">
         <div
           style={{ width: 512, height: 512 }}
-          className="p-8 bg-yellow-200 text-center flex flex-col items-center justify-center border-4 border-yellow-400"
+          className="p-8 bg-white text-center flex flex-col items-center justify-center border-4 border-blue-400"
           ref={containerRef}
         >
-          <h1 className="text-3xl max-w-prose mb-8">{quote.content}</h1>
-          <span className="text-red-900 text-sm">- {quote.author}</span>
+          <h1 className="text-3xl font-serif max-w-prose mb-8">
+            {quote.content}
+          </h1>
+          <p className="text-blue-400 text-sm min-w-full">- {quote.author}</p>
         </div>
       </div>
 
